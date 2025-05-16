@@ -1,9 +1,7 @@
 #!/bin/bash
 
 defines="-DENGINE"
-warnings="-Wno-writable-strings -Wno-format-security -Wno-deprecated-declarations -Wno-switch"
-includes="-Ithird_party -Ithird_party/Include"
-
+warnings="-Wno-write-strings -Wno-format-security -Wno-deprecated-declarations -Wno-switch"5
 timestamp=$(date +%s)
 
 if [[ "$(uname)" == "Linux" ]]; then
@@ -13,7 +11,7 @@ if [[ "$(uname)" == "Linux" ]]; then
 
     # fPIC position independent code https://stackoverflow.com/questions/5311515/gcc-fpic-option
     rm -f game_* # Remove old game_* files
-    c++ -g "src/game.cpp" -shared -fPIC -o game_$timestamp.so $warnings $defines
+    c++ -g "src/main.cpp" -shared -fPIC -o game_$timestamp.so $warnings $defines
     mv game_$timestamp.so game.so
 
 elif [[ "$(uname)" == "Darwin" ]]; then
@@ -30,4 +28,4 @@ else
 fi
 
 
-c++ $includes -g src/game.cpp -o$outputFile $libs $warnings $defines
+c++ $includes -g src/main.cpp -o$outputFile $libs $warnings $defines
