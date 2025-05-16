@@ -1,0 +1,45 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+  {
+      "name": "WSL GDB Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/og.out",    
+      "args": [],                                           
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+
+      // Tell VS Code to run/debug inside WSL
+      "pipeTransport": {
+        "pipeCwd": "${workspaceFolder}",
+        "pipeProgram": "wsl.exe",
+        "pipeArgs": ["-e", "/bin/bash", "-c"],
+        "debuggerPath": "/usr/bin/gdb"     // <-- path to GDB inside WSL
+      },
+
+      // The “miDebuggerPath” is the old form; newer versions use “debuggerPath” under pipeTransport.
+      // If you’re on an older C++ extension, you can instead use:
+      // "miDebuggerPath": "/usr/bin/gdb",
+
+      "MIMode": "gdb",
+      "logging": {
+        "trace": true,
+        "traceResponse": true,
+        "engineLogging": true
+      }
+    },
+
+    {
+      "name": "Windows Launch",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/schnitzel.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}
