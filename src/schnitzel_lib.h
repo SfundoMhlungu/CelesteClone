@@ -272,7 +272,7 @@ char* read_file(const char* filePath, int* fileSize, char* buffer)
   *fileSize = ftell(file);
   fseek(file, 0, SEEK_SET);
 
-  memset(buffer, 0, *fileSize + 1);
+  memset(buffer, 0, *fileSize + 1); // + 1 for null term
   fread(buffer, sizeof(char), *fileSize, file);
 
   fclose(file);

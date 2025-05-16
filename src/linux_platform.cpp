@@ -127,6 +127,7 @@ void platform_update_window()
     {
       input->screenSize.x = event.xexpose.width;
       input->screenSize.y = event.xexpose.height;
+      printf("input size %d\n", input->screenSize.x);
 
       break;
     }
